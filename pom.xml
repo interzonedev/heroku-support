@@ -9,7 +9,10 @@
 	<packaging>jar</packaging>
 
 	<name>HerokuSupport</name>
-	<url>http://maven.apache.org</url>
+	<description>
+		Support classes for running and data migrating applications deployed on the Heroku cloud platform.
+	</description>
+	<url>https://github.com/interzonedev/herokuSupport</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
