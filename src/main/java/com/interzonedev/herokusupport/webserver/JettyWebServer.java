@@ -11,24 +11,26 @@ public class JettyWebServer implements WebServer {
 	private String contextPath = "/";
 	private String webappDirLocation = "src/main/webapp";
 	private String webConfigFileLocation = "/WEB-INF/web.xml";
-	private int webPort = 5000;
+	private int defaultWebPort = 5000;
 
 	public JettyWebServer() {
 	}
 
-	public JettyWebServer(int webPort) {
-		this.webPort = webPort;
+	public JettyWebServer(int defaultWebPort) {
+		this.defaultWebPort = defaultWebPort;
 	}
 
-	public JettyWebServer(String contextPath, String webappDirLocation, String webConfigFileLocation, int webPort) {
+	public JettyWebServer(String contextPath, String webappDirLocation, String webConfigFileLocation, int defaultWebPort) {
 		this.contextPath = contextPath;
 		this.webappDirLocation = webappDirLocation;
 		this.webConfigFileLocation = webConfigFileLocation;
-		this.webPort = webPort;
+		this.defaultWebPort = defaultWebPort;
 	}
 
 	@Override
 	public void start() throws Exception {
+		int webPort = WebServerUtils.getPortFromEnv(defaultWebPort);
+
 		StringBuilder startupMessage = new StringBuilder("Starting Jetty Server ");
 		startupMessage.append("with context \"").append(contextPath).append("\"");
 		startupMessage.append(" on port ").append(webPort);
