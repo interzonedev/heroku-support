@@ -45,6 +45,7 @@ public class JettyWebServer implements WebServer {
 
 		Server server = new Server(webPort);
 		server.setHandler(rootContext);
+		server.setStopAtShutdown(true);
 		server.start();
 		server.join();
 	}
