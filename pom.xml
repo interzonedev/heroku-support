@@ -13,6 +13,19 @@
 		Support classes for running and data migrating applications deployed on the Heroku cloud platform.
 	</description>
 	<url>https://github.com/interzonedev/herokuSupport</url>
+	<inceptionYear>2012</inceptionYear>
+
+	<developers>
+		<developer>
+			<name>Mark Markarian</name>
+			<email>mark@interzonedev.com</email>
+			<url>http://interzonedev.com</url>
+			<roles>
+				<role>developer</role>
+			</roles>
+			<timezone>-8</timezone>
+		</developer>
+	</developers>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
