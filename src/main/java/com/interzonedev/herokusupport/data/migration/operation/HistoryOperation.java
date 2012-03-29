@@ -21,6 +21,18 @@ public class HistoryOperation implements MigrationOperation {
 			log.info("doOperation: historyItem = " + historyItem);
 		}
 
+		/*
+			// This is specifically for flyway.
+			for (MetaDataTableRow historyItem : history) {
+				StringBuilder out = new StringBuilder();
+				out.append(historyItem.getVersion()).append(" - ");
+				out.append(historyItem.getDescription()).append(" - ");
+				out.append(historyItem.getMigrationType()).append(" - ");
+				out.append(historyItem.getState());
+				log.info(out);
+			}
+		 */
+		
 		MigrationResult migrationResult = new MigrationResult(history);
 
 		log.debug("doOperation: end");
