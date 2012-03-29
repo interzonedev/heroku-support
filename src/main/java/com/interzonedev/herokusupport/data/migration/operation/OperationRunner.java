@@ -15,21 +15,23 @@ public class OperationRunner {
 
 		MigrationResult result = null;
 
+		// TODO - Make the MigrationOperation instances beans in a local Spring container.
 		switch (migrationOperation) {
 			case MIGRATE:
-
+				result = (new MigrateOperation()).doOperation(migrationService);
 				break;
 			case CLEAN:
-
+				result = (new CleanOperation()).doOperation(migrationService);
 				break;
 			case HISTORY:
-				// TODO - Make this instance and others like it beans in a local Spring container.
 				result = (new HistoryOperation()).doOperation(migrationService);
 				break;
 			default:
 				log.error("doOperation: Unrecognized operation " + migrationOperation);
 				break;
 		}
+
+		log.debug("doOperation: result = " + result);
 
 		return result;
 	}
