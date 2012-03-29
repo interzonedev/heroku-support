@@ -5,7 +5,7 @@
 
 	<groupId>com.interzonedev</groupId>
 	<artifactId>heroku-support</artifactId>
-	<version>1.0.4-SNAPSHOT</version>
+	<version>1.0.5-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>HerokuSupport</name>
@@ -59,6 +59,13 @@
 			<artifactId>jsp-2.1-jetty</artifactId>
 			<version>6.1.26RC0</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.googlecode.flyway</groupId>
+			<artifactId>flyway-core</artifactId>
+			<version>1.5</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
