@@ -10,6 +10,7 @@ import com.googlecode.flyway.core.Flyway;
 import com.googlecode.flyway.core.init.InitException;
 import com.googlecode.flyway.core.metadatatable.MetaDataTableRow;
 import com.interzonedev.herokusupport.data.migration.MigrationHistory;
+import com.interzonedev.herokusupport.data.migration.MigrationOperationException;
 import com.interzonedev.herokusupport.data.migration.MigrationService;
 import com.interzonedev.herokusupport.data.migration.MigrationStatus;
 
@@ -18,7 +19,7 @@ public class MigrationServiceFlyway extends Flyway implements MigrationService {
 	private final Log log = LogFactory.getLog(getClass());
 
 	@Override
-	public MigrationStatus doMigration() {
+	public MigrationStatus doMigration() throws MigrationOperationException {
 		log.debug("doMigration: start");
 
 		MigrationStatus status = MigrationStatus.INIT_SUCCEEDED;
@@ -50,7 +51,7 @@ public class MigrationServiceFlyway extends Flyway implements MigrationService {
 	}
 
 	@Override
-	public void doClean() {
+	public void doClean() throws MigrationOperationException {
 		log.debug("doClean: start");
 
 		try {
@@ -63,12 +64,24 @@ public class MigrationServiceFlyway extends Flyway implements MigrationService {
 	}
 
 	@Override
-	public List<MigrationHistory> getHistory() {
+	public List<MigrationHistory> getHistory() throws MigrationOperationException {
 		log.debug("getHistory: start");
 
 		List<MigrationHistory> wrappedHistory = new ArrayList<MigrationHistory>();
 
 		try {
+			/*
+			 * // This is specifically for flyway.
+			 * for (MetaDataTableRow historyItem : history) {
+			 * StringBuilder out = new StringBuilder();
+			 * out.append(historyItem.getVersion()).append(" - ");
+			 * out.append(historyItem.getDescription()).append(" - ");
+			 * out.append(historyItem.getMigrationType()).append(" - ");
+			 * out.append(historyItem.getState());
+			 * log.info(out);
+			 * }
+			 */
+
 			List<MetaDataTableRow> history = history();
 			for (MetaDataTableRow historyItem : history) {
 				wrappedHistory.add(new MigrationHistory(historyItem));
