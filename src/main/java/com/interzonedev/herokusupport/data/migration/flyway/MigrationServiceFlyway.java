@@ -70,21 +70,14 @@ public class MigrationServiceFlyway extends Flyway implements MigrationService {
 		List<MigrationHistory> wrappedHistory = new ArrayList<MigrationHistory>();
 
 		try {
-			/*
-			 * // This is specifically for flyway.
-			 * for (MetaDataTableRow historyItem : history) {
-			 * StringBuilder out = new StringBuilder();
-			 * out.append(historyItem.getVersion()).append(" - ");
-			 * out.append(historyItem.getDescription()).append(" - ");
-			 * out.append(historyItem.getMigrationType()).append(" - ");
-			 * out.append(historyItem.getState());
-			 * log.info(out);
-			 * }
-			 */
-
 			List<MetaDataTableRow> history = history();
 			for (MetaDataTableRow historyItem : history) {
-				wrappedHistory.add(new MigrationHistory(historyItem));
+				StringBuilder out = new StringBuilder();
+				out.append(historyItem.getVersion()).append(" - ");
+				out.append(historyItem.getDescription()).append(" - ");
+				out.append(historyItem.getMigrationType()).append(" - ");
+				out.append(historyItem.getState());
+				wrappedHistory.add(new MigrationHistory(out.toString()));
 			}
 		} catch (Throwable t) {
 			log.error("getHistory: Error getting schema history", t);
