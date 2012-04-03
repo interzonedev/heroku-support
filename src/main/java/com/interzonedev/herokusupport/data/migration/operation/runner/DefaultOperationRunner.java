@@ -15,6 +15,13 @@ public class DefaultOperationRunner implements OperationRunner {
 
 	private Log log = LogFactory.getLog(getClass());
 
+	// TODO - Make the MigrationOperation instances beans in a local Spring container.
+	private MigrateOperation migrateOperation = new MigrateOperation();
+
+	private CleanOperation cleanOperation = new CleanOperation();
+
+	private HistoryOperation historyOperation = new HistoryOperation();
+
 	@Override
 	public MigrationResult doOperation(MigrationTask migrationTask, MigrationService migrationService)
 			throws MigrationOperationException {
@@ -22,20 +29,20 @@ public class DefaultOperationRunner implements OperationRunner {
 
 		MigrationResult result = null;
 
-		// TODO - Make the MigrationOperation instances beans in a local Spring container.
 		switch (migrationTask) {
 			case MIGRATE:
-				result = (new MigrateOperation()).doOperation(migrationService);
+				result = migrateOperation.doOperation(migrationService);
 				break;
 			case CLEAN:
-				result = (new CleanOperation()).doOperation(migrationService);
+				result = cleanOperation.doOperation(migrationService);
 				break;
 			case HISTORY:
-				result = (new HistoryOperation()).doOperation(migrationService);
+				result = historyOperation.doOperation(migrationService);
 				break;
 			default:
-				log.error("doOperation: Unrecognized operation " + migrationTask);
-				break;
+				String errorMessage = "doOperation: Unrecognized operation " + migrationTask;
+				log.error(errorMessage);
+				throw new MigrationOperationException(errorMessage);
 		}
 
 		log.debug("doOperation: result = " + result);
