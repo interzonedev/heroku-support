@@ -12,6 +12,7 @@ import com.googlecode.flyway.core.metadatatable.MetaDataTableRow;
 import com.interzonedev.herokusupport.data.migration.MigrationOperationException;
 import com.interzonedev.herokusupport.data.migration.MigrationService;
 import com.interzonedev.herokusupport.data.migration.result.MigrationHistory;
+import com.interzonedev.herokusupport.data.migration.result.MigrationResult;
 import com.interzonedev.herokusupport.data.migration.result.MigrationStatus;
 
 public class MigrationServiceFlyway extends Flyway implements MigrationService {
@@ -75,6 +76,23 @@ public class MigrationServiceFlyway extends Flyway implements MigrationService {
 	}
 
 	@Override
+	public MigrationResult getStatus() throws MigrationOperationException {
+		log.debug("getStatus: start");
+
+		MigrationResult result = null;
+
+		try {
+			MetaDataTableRow status = status();
+			String statusToString = metaDataTableRowToString(status);
+			result = new MigrationResult(statusToString);
+		} catch (Throwable t) {
+			log.error("getHistory: Error getting schema history", t);
+		}
+
+		return result;
+	}
+
+	@Override
 	public List<MigrationHistory> getHistory() throws MigrationOperationException {
 		log.debug("getHistory: start");
 
@@ -83,12 +101,8 @@ public class MigrationServiceFlyway extends Flyway implements MigrationService {
 		try {
 			List<MetaDataTableRow> history = history();
 			for (MetaDataTableRow historyItem : history) {
-				StringBuilder out = new StringBuilder();
-				out.append(historyItem.getVersion()).append(" - ");
-				out.append(historyItem.getDescription()).append(" - ");
-				out.append(historyItem.getMigrationType()).append(" - ");
-				out.append(historyItem.getState());
-				wrappedHistory.add(new MigrationHistory(out.toString()));
+				String historyToString = metaDataTableRowToString(historyItem);
+				wrappedHistory.add(new MigrationHistory(historyToString));
 			}
 		} catch (Throwable t) {
 			log.error("getHistory: Error getting schema history", t);
@@ -99,4 +113,12 @@ public class MigrationServiceFlyway extends Flyway implements MigrationService {
 		return wrappedHistory;
 	}
 
+	private String metaDataTableRowToString(MetaDataTableRow metaDataTableRow) {
+		StringBuilder out = new StringBuilder();
+		out.append(metaDataTableRow.getVersion()).append(" - ");
+		out.append(metaDataTableRow.getDescription()).append(" - ");
+		out.append(metaDataTableRow.getMigrationType()).append(" - ");
+		out.append(metaDataTableRow.getState());
+		return out.toString();
+	}
 }

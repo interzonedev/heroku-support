@@ -10,18 +10,20 @@ import com.interzonedev.herokusupport.data.migration.operation.HistoryOperation;
 import com.interzonedev.herokusupport.data.migration.operation.InitOperation;
 import com.interzonedev.herokusupport.data.migration.operation.MigrateOperation;
 import com.interzonedev.herokusupport.data.migration.operation.MigrationTask;
+import com.interzonedev.herokusupport.data.migration.operation.StatusOperation;
 import com.interzonedev.herokusupport.data.migration.result.MigrationResult;
 
 public class DefaultOperationRunner implements OperationRunner {
 
 	private Log log = LogFactory.getLog(getClass());
 
-	// TODO - Make the MigrationOperation instances beans in a local Spring container.
 	private InitOperation initOperation = new InitOperation();
 
 	private MigrateOperation migrateOperation = new MigrateOperation();
 
 	private CleanOperation cleanOperation = new CleanOperation();
+
+	private StatusOperation statusOperation = new StatusOperation();
 
 	private HistoryOperation historyOperation = new HistoryOperation();
 
@@ -42,6 +44,9 @@ public class DefaultOperationRunner implements OperationRunner {
 			case CLEAN:
 				result = cleanOperation.doOperation(migrationService);
 				break;
+			case STATUS:
+				result = statusOperation.doOperation(migrationService);
+				break;
 			case HISTORY:
 				result = historyOperation.doOperation(migrationService);
 				break;
@@ -56,5 +61,4 @@ public class DefaultOperationRunner implements OperationRunner {
 		return result;
 
 	}
-
 }
