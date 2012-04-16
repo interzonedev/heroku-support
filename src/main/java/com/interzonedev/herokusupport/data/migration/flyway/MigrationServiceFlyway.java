@@ -19,20 +19,31 @@ public class MigrationServiceFlyway extends Flyway implements MigrationService {
 	private final Log log = LogFactory.getLog(getClass());
 
 	@Override
-	public MigrationStatus doMigration() throws MigrationOperationException {
-		log.debug("doMigration: start");
+	public MigrationStatus doInit() throws MigrationOperationException {
+		log.debug("doInit: start");
 
 		MigrationStatus status = MigrationStatus.INIT_SUCCEEDED;
 
 		try {
-			log.debug("doMigration: init schema");
+			log.debug("doInit: init schema");
 			init();
 		} catch (InitException ie) {
-			log.info("doMigration: Schema already initialized");
+			log.info("doInit: Schema already initialized");
 		} catch (Throwable t) {
-			log.error("doMigration: Error migrating schema", t);
+			log.error("doInit: Error migrating schema", t);
 			status = MigrationStatus.INIT_FAILED;
 		}
+
+		log.debug("doInit: end - status = " + status);
+
+		return status;
+	}
+
+	@Override
+	public MigrationStatus doMigration() throws MigrationOperationException {
+		log.debug("doMigration: start");
+
+		MigrationStatus status = doInit();
 
 		if (MigrationStatus.INIT_SUCCEEDED.equals(status)) {
 			status = MigrationStatus.MIGRATION_FAILED;

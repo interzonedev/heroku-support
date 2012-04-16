@@ -7,6 +7,7 @@ import com.interzonedev.herokusupport.data.migration.MigrationOperationException
 import com.interzonedev.herokusupport.data.migration.MigrationService;
 import com.interzonedev.herokusupport.data.migration.operation.CleanOperation;
 import com.interzonedev.herokusupport.data.migration.operation.HistoryOperation;
+import com.interzonedev.herokusupport.data.migration.operation.InitOperation;
 import com.interzonedev.herokusupport.data.migration.operation.MigrateOperation;
 import com.interzonedev.herokusupport.data.migration.operation.MigrationResult;
 import com.interzonedev.herokusupport.data.migration.operation.MigrationTask;
@@ -16,6 +17,8 @@ public class DefaultOperationRunner implements OperationRunner {
 	private Log log = LogFactory.getLog(getClass());
 
 	// TODO - Make the MigrationOperation instances beans in a local Spring container.
+	private InitOperation initOperation = new InitOperation();
+
 	private MigrateOperation migrateOperation = new MigrateOperation();
 
 	private CleanOperation cleanOperation = new CleanOperation();
@@ -30,6 +33,9 @@ public class DefaultOperationRunner implements OperationRunner {
 		MigrationResult result = null;
 
 		switch (migrationTask) {
+			case INIT:
+				result = initOperation.doOperation(migrationService);
+				break;
 			case MIGRATE:
 				result = migrateOperation.doOperation(migrationService);
 				break;
