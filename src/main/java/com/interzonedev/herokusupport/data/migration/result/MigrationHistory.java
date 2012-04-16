@@ -1,4 +1,4 @@
-package com.interzonedev.herokusupport.data.migration;
+package com.interzonedev.herokusupport.data.migration.result;
 
 public class MigrationHistory {
 	private Object history;

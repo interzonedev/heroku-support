@@ -1,4 +1,4 @@
-package com.interzonedev.herokusupport.data.migration.operation;
+package com.interzonedev.herokusupport.data.migration.result;
 
 public class MigrationResult {
 	private Object result;

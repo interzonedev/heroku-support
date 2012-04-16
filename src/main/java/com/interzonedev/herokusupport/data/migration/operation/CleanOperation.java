@@ -5,6 +5,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.interzonedev.herokusupport.data.migration.MigrationOperationException;
 import com.interzonedev.herokusupport.data.migration.MigrationService;
+import com.interzonedev.herokusupport.data.migration.result.MigrationResult;
 
 public class CleanOperation implements MigrationOperation {
 

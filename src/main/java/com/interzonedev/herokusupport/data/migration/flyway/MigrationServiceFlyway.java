@@ -9,10 +9,10 @@ import org.apache.commons.logging.LogFactory;
 import com.googlecode.flyway.core.Flyway;
 import com.googlecode.flyway.core.init.InitException;
 import com.googlecode.flyway.core.metadatatable.MetaDataTableRow;
-import com.interzonedev.herokusupport.data.migration.MigrationHistory;
 import com.interzonedev.herokusupport.data.migration.MigrationOperationException;
 import com.interzonedev.herokusupport.data.migration.MigrationService;
-import com.interzonedev.herokusupport.data.migration.MigrationStatus;
+import com.interzonedev.herokusupport.data.migration.result.MigrationHistory;
+import com.interzonedev.herokusupport.data.migration.result.MigrationStatus;
 
 public class MigrationServiceFlyway extends Flyway implements MigrationService {
 

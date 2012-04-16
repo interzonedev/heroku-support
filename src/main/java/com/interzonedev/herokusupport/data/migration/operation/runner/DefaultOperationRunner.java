@@ -9,8 +9,8 @@ import com.interzonedev.herokusupport.data.migration.operation.CleanOperation;
 import com.interzonedev.herokusupport.data.migration.operation.HistoryOperation;
 import com.interzonedev.herokusupport.data.migration.operation.InitOperation;
 import com.interzonedev.herokusupport.data.migration.operation.MigrateOperation;
-import com.interzonedev.herokusupport.data.migration.operation.MigrationResult;
 import com.interzonedev.herokusupport.data.migration.operation.MigrationTask;
+import com.interzonedev.herokusupport.data.migration.result.MigrationResult;
 
 public class DefaultOperationRunner implements OperationRunner {
 

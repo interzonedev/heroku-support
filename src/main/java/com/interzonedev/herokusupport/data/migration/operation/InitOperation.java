@@ -5,7 +5,8 @@ import org.apache.commons.logging.LogFactory;
 
 import com.interzonedev.herokusupport.data.migration.MigrationOperationException;
 import com.interzonedev.herokusupport.data.migration.MigrationService;
-import com.interzonedev.herokusupport.data.migration.MigrationStatus;
+import com.interzonedev.herokusupport.data.migration.result.MigrationResult;
+import com.interzonedev.herokusupport.data.migration.result.MigrationStatus;
 
 public class InitOperation implements MigrationOperation {
 

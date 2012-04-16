@@ -5,9 +5,10 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.interzonedev.herokusupport.data.migration.MigrationHistory;
 import com.interzonedev.herokusupport.data.migration.MigrationOperationException;
 import com.interzonedev.herokusupport.data.migration.MigrationService;
+import com.interzonedev.herokusupport.data.migration.result.MigrationHistory;
+import com.interzonedev.herokusupport.data.migration.result.MigrationResult;
 
 public class HistoryOperation implements MigrationOperation {
 	private Log log = LogFactory.getLog(getClass());
