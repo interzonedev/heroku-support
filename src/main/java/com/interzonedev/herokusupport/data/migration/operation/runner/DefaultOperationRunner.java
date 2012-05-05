@@ -1,5 +1,7 @@
 package com.interzonedev.herokusupport.data.migration.operation.runner;
 
+import javax.inject.Named;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -13,6 +15,7 @@ import com.interzonedev.herokusupport.data.migration.operation.MigrationTask;
 import com.interzonedev.herokusupport.data.migration.operation.StatusOperation;
 import com.interzonedev.herokusupport.data.migration.result.MigrationResult;
 
+@Named("operationRunner")
 public class DefaultOperationRunner implements OperationRunner {
 
 	private Log log = LogFactory.getLog(getClass());
