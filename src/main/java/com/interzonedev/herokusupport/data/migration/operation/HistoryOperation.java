@@ -2,6 +2,8 @@ package com.interzonedev.herokusupport.data.migration.operation;
 
 import java.util.List;
 
+import javax.inject.Named;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -10,6 +12,7 @@ import com.interzonedev.herokusupport.data.migration.MigrationService;
 import com.interzonedev.herokusupport.data.migration.result.MigrationHistory;
 import com.interzonedev.herokusupport.data.migration.result.MigrationResult;
 
+@Named("historyOperation")
 public class HistoryOperation implements MigrationOperation {
 	private Log log = LogFactory.getLog(getClass());
 

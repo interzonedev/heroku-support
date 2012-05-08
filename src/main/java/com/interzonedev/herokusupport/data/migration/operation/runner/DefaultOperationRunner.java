@@ -1,5 +1,6 @@
 package com.interzonedev.herokusupport.data.migration.operation.runner;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.commons.logging.Log;
@@ -11,6 +12,7 @@ import com.interzonedev.herokusupport.data.migration.operation.CleanOperation;
 import com.interzonedev.herokusupport.data.migration.operation.HistoryOperation;
 import com.interzonedev.herokusupport.data.migration.operation.InitOperation;
 import com.interzonedev.herokusupport.data.migration.operation.MigrateOperation;
+import com.interzonedev.herokusupport.data.migration.operation.MigrationOperation;
 import com.interzonedev.herokusupport.data.migration.operation.MigrationTask;
 import com.interzonedev.herokusupport.data.migration.operation.StatusOperation;
 import com.interzonedev.herokusupport.data.migration.result.MigrationResult;
@@ -20,44 +22,51 @@ public class DefaultOperationRunner implements OperationRunner {
 
 	private Log log = LogFactory.getLog(getClass());
 
-	private InitOperation initOperation = new InitOperation();
+	@Inject
+	private InitOperation initOperation;
 
-	private MigrateOperation migrateOperation = new MigrateOperation();
+	@Inject
+	private MigrateOperation migrateOperation;
 
-	private CleanOperation cleanOperation = new CleanOperation();
+	@Inject
+	private CleanOperation cleanOperation;
 
-	private StatusOperation statusOperation = new StatusOperation();
+	@Inject
+	private StatusOperation statusOperation;
 
-	private HistoryOperation historyOperation = new HistoryOperation();
+	@Inject
+	private HistoryOperation historyOperation;
 
 	@Override
 	public MigrationResult doOperation(MigrationTask migrationTask, MigrationService migrationService)
 			throws MigrationOperationException {
 		log.debug("doOperation: Perform " + migrationTask);
 
-		MigrationResult result = null;
+		MigrationOperation migrationOperation = null;
 
 		switch (migrationTask) {
 			case INIT:
-				result = initOperation.doOperation(migrationService);
+				migrationOperation = initOperation;
 				break;
 			case MIGRATE:
-				result = migrateOperation.doOperation(migrationService);
+				migrationOperation = migrateOperation;
 				break;
 			case CLEAN:
-				result = cleanOperation.doOperation(migrationService);
+				migrationOperation = cleanOperation;
 				break;
 			case STATUS:
-				result = statusOperation.doOperation(migrationService);
+				migrationOperation = statusOperation;
 				break;
 			case HISTORY:
-				result = historyOperation.doOperation(migrationService);
+				migrationOperation = historyOperation;
 				break;
 			default:
 				String errorMessage = "doOperation: Unrecognized operation " + migrationTask;
 				log.error(errorMessage);
 				throw new MigrationOperationException(errorMessage);
 		}
+
+		MigrationResult result = migrationOperation.doOperation(migrationService);
 
 		log.debug("doOperation: result = " + result);
 
