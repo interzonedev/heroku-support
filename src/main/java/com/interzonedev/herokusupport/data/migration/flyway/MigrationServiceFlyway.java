@@ -31,8 +31,9 @@ public class MigrationServiceFlyway extends Flyway implements MigrationService {
 		} catch (InitException ie) {
 			log.info("doInit: Schema already initialized");
 		} catch (Throwable t) {
-			log.error("doInit: Error migrating schema", t);
-			status = MigrationStatus.INIT_FAILED;
+			String errorMessage = "doInit: Error initializing migrations";
+			log.error(errorMessage, t);
+			throw new MigrationOperationException(errorMessage, t);
 		}
 
 		log.debug("doInit: end - status = " + status);
@@ -53,7 +54,9 @@ public class MigrationServiceFlyway extends Flyway implements MigrationService {
 				migrate();
 				status = MigrationStatus.MIGRATION_SUCCEEDED;
 			} catch (Throwable t) {
-				log.error("doMigration: Error migrating schema", t);
+				String errorMessage = "doMigration: Error migrating schema";
+				log.error(errorMessage, t);
+				throw new MigrationOperationException(errorMessage, t);
 			}
 		}
 
@@ -69,7 +72,9 @@ public class MigrationServiceFlyway extends Flyway implements MigrationService {
 		try {
 			clean();
 		} catch (Throwable t) {
-			log.error("doClean: Error cleaning schema", t);
+			String errorMessage = "doClean: Error cleaning schema";
+			log.error(errorMessage, t);
+			throw new MigrationOperationException(errorMessage, t);
 		}
 
 		log.debug("doClean: end");
@@ -86,7 +91,9 @@ public class MigrationServiceFlyway extends Flyway implements MigrationService {
 			String statusToString = metaDataTableRowToString(status);
 			result = new MigrationResult(statusToString);
 		} catch (Throwable t) {
-			log.error("getHistory: Error getting schema history", t);
+			String errorMessage = "getStatus: Error getting migration status";
+			log.error(errorMessage, t);
+			throw new MigrationOperationException(errorMessage, t);
 		}
 
 		return result;
@@ -105,7 +112,9 @@ public class MigrationServiceFlyway extends Flyway implements MigrationService {
 				wrappedHistory.add(new MigrationHistory(historyToString));
 			}
 		} catch (Throwable t) {
-			log.error("getHistory: Error getting schema history", t);
+			String errorMessage = "getHistory: Error getting migration history";
+			log.error(errorMessage, t);
+			throw new MigrationOperationException(errorMessage, t);
 		}
 
 		log.debug("getHistory: end");

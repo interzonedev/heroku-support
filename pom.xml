@@ -5,7 +5,7 @@
 
 	<groupId>com.interzonedev</groupId>
 	<artifactId>heroku-support</artifactId>
-	<version>1.0.14-SNAPSHOT</version>
+	<version>1.0.14</version>
 	<packaging>jar</packaging>
 
 	<name>HerokuSupport</name>
