@@ -2,8 +2,8 @@ package com.interzonedev.herokusupport.webserver;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.mortbay.jetty.Server;
-import org.mortbay.jetty.webapp.WebAppContext;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.webapp.WebAppContext;
 
 public class JettyWebServer implements WebServer {
 	private Log log = LogFactory.getLog(getClass());
