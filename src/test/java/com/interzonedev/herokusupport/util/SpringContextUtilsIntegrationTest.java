@@ -1,15 +1,16 @@
 package com.interzonedev.herokusupport.util;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.Assert;
 import org.junit.Test;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 
+import ch.qos.logback.classic.Logger;
+
 public class SpringContextUtilsIntegrationTest {
 
-	private final Log log = LogFactory.getLog(getClass());
+	private Logger log = (Logger) LoggerFactory.getLogger(getClass());
 
 	private String[] configLocations1 = new String[] { "/com/interzonedev/herokusupport/spring/applicationContext1.xml" };
 

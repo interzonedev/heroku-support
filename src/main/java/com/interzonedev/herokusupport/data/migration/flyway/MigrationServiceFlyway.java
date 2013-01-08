@@ -3,8 +3,9 @@ package com.interzonedev.herokusupport.data.migration.flyway;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.Logger;
 
 import com.googlecode.flyway.core.Flyway;
 import com.googlecode.flyway.core.init.InitException;
@@ -17,7 +18,7 @@ import com.interzonedev.herokusupport.data.migration.result.MigrationStatus;
 
 public class MigrationServiceFlyway extends Flyway implements MigrationService {
 
-	private final Log log = LogFactory.getLog(getClass());
+	private Logger log = (Logger) LoggerFactory.getLogger(getClass());
 
 	@Override
 	public MigrationStatus doInit() throws MigrationOperationException {

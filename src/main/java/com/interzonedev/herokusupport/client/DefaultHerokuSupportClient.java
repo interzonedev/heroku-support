@@ -1,7 +1,8 @@
 package com.interzonedev.herokusupport.client;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.Logger;
 
 import com.interzonedev.herokusupport.data.migration.MigrationOperationException;
 import com.interzonedev.herokusupport.data.migration.MigrationService;
@@ -18,7 +19,7 @@ public class DefaultHerokuSupportClient implements HerokuSupportClient {
 
 	private static final String[] CONTEXT_FILE_LOCATIONS = { "com/interzonedev/herokusupport/spring/applicationContext.xml" };
 
-	private Log log = LogFactory.getLog(getClass());
+	private Logger log = (Logger) LoggerFactory.getLogger(getClass());
 
 	@Override
 	public MigrationResult migrateDatabase(MigrationTask migrationTask, MigrationService migrationService)

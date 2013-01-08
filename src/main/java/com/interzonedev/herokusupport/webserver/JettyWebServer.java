@@ -1,12 +1,13 @@
 package com.interzonedev.herokusupport.webserver;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
+import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.Logger;
 
 public class JettyWebServer implements WebServer {
-	private Log log = LogFactory.getLog(getClass());
+	private Logger log = (Logger) LoggerFactory.getLogger(getClass());
 
 	private WebServerParams webServerParams;
 

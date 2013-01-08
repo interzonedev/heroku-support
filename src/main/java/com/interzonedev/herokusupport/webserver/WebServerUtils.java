@@ -1,11 +1,12 @@
 package com.interzonedev.herokusupport.webserver;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.Logger;
 
 public class WebServerUtils {
-	private static Log log = LogFactory.getLog(WebServerUtils.class);
+	private static Logger log = (Logger) LoggerFactory.getLogger(WebServerUtils.class);
 
 	public static int getPortFromEnv(int defaultWebPort) {
 		int webPort = defaultWebPort;
