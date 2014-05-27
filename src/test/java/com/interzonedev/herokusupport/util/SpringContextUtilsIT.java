@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 
-public class SpringContextUtilsIntegrationTest {
+public class SpringContextUtilsIT {
 
     private Logger log = (Logger) LoggerFactory.getLogger(getClass());
 
