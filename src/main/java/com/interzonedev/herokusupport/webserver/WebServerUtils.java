@@ -1,9 +1,8 @@
 package com.interzonedev.herokusupport.webserver;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import ch.qos.logback.classic.Logger;
 
 public class WebServerUtils {
     private static Logger log = (Logger) LoggerFactory.getLogger(WebServerUtils.class);

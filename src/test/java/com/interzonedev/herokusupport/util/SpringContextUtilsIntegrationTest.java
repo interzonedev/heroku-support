@@ -2,11 +2,10 @@ package com.interzonedev.herokusupport.util;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
-
-import ch.qos.logback.classic.Logger;
 
 public class SpringContextUtilsIntegrationTest {
 

@@ -12,7 +12,7 @@ public class SpringContextUtils {
 
     private static final Map<String[], ApplicationContext> applicationContexts = new HashMap<String[], ApplicationContext>();
 
-    public static ApplicationContext getApplicationContext(String[] configLocations) {
+    public static synchronized ApplicationContext getApplicationContext(String[] configLocations) {
 
         Assert.notNull(configLocations, "getApplicationContext: The config locations must be set");
         Assert.notEmpty(configLocations, "getApplicationContext: The config locations must not be empty");
