@@ -7,13 +7,13 @@ import com.interzonedev.herokusupport.data.migration.result.MigrationResult;
 import com.interzonedev.herokusupport.data.migration.result.MigrationStatus;
 
 public interface MigrationService {
-	public MigrationStatus doInit() throws MigrationOperationException;
+    public MigrationStatus doInit() throws MigrationOperationException;
 
-	public MigrationStatus doMigration() throws MigrationOperationException;
+    public MigrationStatus doMigration() throws MigrationOperationException;
 
-	public void doClean() throws MigrationOperationException;
+    public void doClean() throws MigrationOperationException;
 
-	public MigrationResult getStatus() throws MigrationOperationException;
+    public MigrationResult getStatus() throws MigrationOperationException;
 
-	public List<MigrationHistory> getHistory() throws MigrationOperationException;
+    public List<MigrationHistory> getHistory() throws MigrationOperationException;
 }

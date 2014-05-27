@@ -13,16 +13,16 @@ import com.interzonedev.herokusupport.data.migration.result.MigrationResult;
 @Named("cleanOperation")
 public class CleanOperation implements MigrationOperation {
 
-	private Logger log = (Logger) LoggerFactory.getLogger(getClass());
+    private Logger log = (Logger) LoggerFactory.getLogger(getClass());
 
-	@Override
-	public MigrationResult doOperation(MigrationService migrationService) throws MigrationOperationException {
-		log.info("doOperation: start");
+    @Override
+    public MigrationResult doOperation(MigrationService migrationService) throws MigrationOperationException {
+        log.info("doOperation: start");
 
-		migrationService.doClean();
+        migrationService.doClean();
 
-		log.info("doOperation: end");
+        log.info("doOperation: end");
 
-		return null;
-	}
+        return null;
+    }
 }

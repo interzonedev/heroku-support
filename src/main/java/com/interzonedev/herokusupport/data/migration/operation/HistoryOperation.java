@@ -15,25 +15,25 @@ import com.interzonedev.herokusupport.data.migration.result.MigrationResult;
 
 @Named("historyOperation")
 public class HistoryOperation implements MigrationOperation {
-	private Logger log = (Logger) LoggerFactory.getLogger(getClass());
+    private Logger log = (Logger) LoggerFactory.getLogger(getClass());
 
-	@Override
-	public MigrationResult doOperation(MigrationService migrationService) throws MigrationOperationException {
+    @Override
+    public MigrationResult doOperation(MigrationService migrationService) throws MigrationOperationException {
 
-		log.info("doOperation: start");
+        log.info("doOperation: start");
 
-		List<MigrationHistory> history = migrationService.getHistory();
+        List<MigrationHistory> history = migrationService.getHistory();
 
-		for (MigrationHistory historyItem : history) {
-			log.debug("doOperation: historyItem = " + historyItem);
-		}
+        for (MigrationHistory historyItem : history) {
+            log.debug("doOperation: historyItem = " + historyItem);
+        }
 
-		MigrationResult migrationResult = new MigrationResult(history);
+        MigrationResult migrationResult = new MigrationResult(history);
 
-		log.info("doOperation: end");
+        log.info("doOperation: end");
 
-		return migrationResult;
+        return migrationResult;
 
-	}
+    }
 
 }

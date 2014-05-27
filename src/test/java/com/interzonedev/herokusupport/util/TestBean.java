@@ -6,41 +6,41 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class TestBean {
 
-	private String value;
+    private String value;
 
-	public TestBean(String value) {
-		this.value = value;
-	}
+    public TestBean(String value) {
+        this.value = value;
+    }
 
-	public String getValue() {
-		return value;
-	}
+    public String getValue() {
+        return value;
+    }
 
-	public void setValue(String value) {
-		this.value = value;
-	}
+    public void setValue(String value) {
+        this.value = value;
+    }
 
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this).append("value", getValue()).toString();
-	}
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this).append("value", getValue()).toString();
+    }
 
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder(17, 37).append(getValue()).toHashCode();
-	}
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37).append(getValue()).toHashCode();
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (!(obj instanceof TestBean)) {
-			return false;
-		}
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof TestBean)) {
+            return false;
+        }
 
-		TestBean that = (TestBean) obj;
+        TestBean that = (TestBean) obj;
 
-		boolean equals = new EqualsBuilder().append(getValue(), that.getValue()).isEquals();
+        boolean equals = new EqualsBuilder().append(getValue(), that.getValue()).isEquals();
 
-		return equals;
-	}
+        return equals;
+    }
 
 }

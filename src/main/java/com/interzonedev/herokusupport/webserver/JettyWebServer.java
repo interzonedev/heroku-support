@@ -7,39 +7,39 @@ import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Logger;
 
 public class JettyWebServer implements WebServer {
-	private Logger log = (Logger) LoggerFactory.getLogger(getClass());
+    private Logger log = (Logger) LoggerFactory.getLogger(getClass());
 
-	private WebServerParams webServerParams;
+    private WebServerParams webServerParams;
 
-	public JettyWebServer(WebServerParams webServerParams) {
-		this.webServerParams = webServerParams;
-	}
+    public JettyWebServer(WebServerParams webServerParams) {
+        this.webServerParams = webServerParams;
+    }
 
-	@Override
-	public void start() throws Exception {
-		String contextPath = webServerParams.getContextPath();
-		String webappDirLocation = webServerParams.getWebappDirLocation();
-		String webConfigFileLocation = webServerParams.getWebConfigFileLocation();
-		int defaultWebPort = webServerParams.getDefaultWebPort();
+    @Override
+    public void start() throws Exception {
+        String contextPath = webServerParams.getContextPath();
+        String webappDirLocation = webServerParams.getWebappDirLocation();
+        String webConfigFileLocation = webServerParams.getWebConfigFileLocation();
+        int defaultWebPort = webServerParams.getDefaultWebPort();
 
-		int webPort = WebServerUtils.getPortFromEnv(defaultWebPort);
+        int webPort = WebServerUtils.getPortFromEnv(defaultWebPort);
 
-		StringBuilder startupMessage = new StringBuilder("Starting Jetty Server ");
-		startupMessage.append("with context \"").append(contextPath).append("\"");
-		startupMessage.append(" on port ").append(webPort);
+        StringBuilder startupMessage = new StringBuilder("Starting Jetty Server ");
+        startupMessage.append("with context \"").append(contextPath).append("\"");
+        startupMessage.append(" on port ").append(webPort);
 
-		log.info(startupMessage.toString());
+        log.info(startupMessage.toString());
 
-		WebAppContext rootContext = new WebAppContext();
-		rootContext.setContextPath(contextPath);
-		rootContext.setDescriptor(webappDirLocation + webConfigFileLocation);
-		rootContext.setResourceBase(webappDirLocation);
-		rootContext.setParentLoaderPriority(true);
+        WebAppContext rootContext = new WebAppContext();
+        rootContext.setContextPath(contextPath);
+        rootContext.setDescriptor(webappDirLocation + webConfigFileLocation);
+        rootContext.setResourceBase(webappDirLocation);
+        rootContext.setParentLoaderPriority(true);
 
-		Server server = new Server(webPort);
-		server.setHandler(rootContext);
-		server.setStopAtShutdown(true);
-		server.start();
-		server.join();
-	}
+        Server server = new Server(webPort);
+        server.setHandler(rootContext);
+        server.setStopAtShutdown(true);
+        server.start();
+        server.join();
+    }
 }

@@ -6,6 +6,6 @@ import com.interzonedev.herokusupport.data.migration.operation.MigrationTask;
 import com.interzonedev.herokusupport.data.migration.result.MigrationResult;
 
 public interface OperationRunner {
-	public MigrationResult doOperation(MigrationTask migrationTask, MigrationService migrationService)
-			throws MigrationOperationException;
+    public MigrationResult doOperation(MigrationTask migrationTask, MigrationService migrationService)
+            throws MigrationOperationException;
 }

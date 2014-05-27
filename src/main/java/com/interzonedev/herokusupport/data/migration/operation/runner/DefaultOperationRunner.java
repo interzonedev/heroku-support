@@ -21,57 +21,57 @@ import com.interzonedev.herokusupport.data.migration.result.MigrationResult;
 @Named("operationRunner")
 public class DefaultOperationRunner implements OperationRunner {
 
-	private Logger log = (Logger) LoggerFactory.getLogger(getClass());
+    private Logger log = (Logger) LoggerFactory.getLogger(getClass());
 
-	@Inject
-	private InitOperation initOperation;
+    @Inject
+    private InitOperation initOperation;
 
-	@Inject
-	private MigrateOperation migrateOperation;
+    @Inject
+    private MigrateOperation migrateOperation;
 
-	@Inject
-	private CleanOperation cleanOperation;
+    @Inject
+    private CleanOperation cleanOperation;
 
-	@Inject
-	private StatusOperation statusOperation;
+    @Inject
+    private StatusOperation statusOperation;
 
-	@Inject
-	private HistoryOperation historyOperation;
+    @Inject
+    private HistoryOperation historyOperation;
 
-	@Override
-	public MigrationResult doOperation(MigrationTask migrationTask, MigrationService migrationService)
-			throws MigrationOperationException {
-		log.debug("doOperation: Perform " + migrationTask);
+    @Override
+    public MigrationResult doOperation(MigrationTask migrationTask, MigrationService migrationService)
+            throws MigrationOperationException {
+        log.debug("doOperation: Perform " + migrationTask);
 
-		MigrationOperation migrationOperation = null;
+        MigrationOperation migrationOperation = null;
 
-		switch (migrationTask) {
-			case INIT:
-				migrationOperation = initOperation;
-				break;
-			case MIGRATE:
-				migrationOperation = migrateOperation;
-				break;
-			case CLEAN:
-				migrationOperation = cleanOperation;
-				break;
-			case STATUS:
-				migrationOperation = statusOperation;
-				break;
-			case HISTORY:
-				migrationOperation = historyOperation;
-				break;
-			default:
-				String errorMessage = "doOperation: Unrecognized operation " + migrationTask;
-				log.error(errorMessage);
-				throw new MigrationOperationException(errorMessage);
-		}
+        switch (migrationTask) {
+            case INIT:
+                migrationOperation = initOperation;
+                break;
+            case MIGRATE:
+                migrationOperation = migrateOperation;
+                break;
+            case CLEAN:
+                migrationOperation = cleanOperation;
+                break;
+            case STATUS:
+                migrationOperation = statusOperation;
+                break;
+            case HISTORY:
+                migrationOperation = historyOperation;
+                break;
+            default:
+                String errorMessage = "doOperation: Unrecognized operation " + migrationTask;
+                log.error(errorMessage);
+                throw new MigrationOperationException(errorMessage);
+        }
 
-		MigrationResult result = migrationOperation.doOperation(migrationService);
+        MigrationResult result = migrationOperation.doOperation(migrationService);
 
-		log.debug("doOperation: result = " + result);
+        log.debug("doOperation: result = " + result);
 
-		return result;
+        return result;
 
-	}
+    }
 }

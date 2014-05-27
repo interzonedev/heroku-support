@@ -8,8 +8,8 @@ import com.interzonedev.herokusupport.webserver.WebServerParams;
 import com.interzonedev.herokusupport.webserver.WebServerType;
 
 public interface HerokuSupportClient {
-	public MigrationResult migrateDatabase(MigrationTask migrationTask, MigrationService migrationService)
-			throws MigrationOperationException;
+    public MigrationResult migrateDatabase(MigrationTask migrationTask, MigrationService migrationService)
+            throws MigrationOperationException;
 
-	public void startWebServer(WebServerType webServerType, WebServerParams webServerParams) throws Exception;
+    public void startWebServer(WebServerType webServerType, WebServerParams webServerParams) throws Exception;
 }

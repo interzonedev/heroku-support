@@ -12,21 +12,21 @@ import com.interzonedev.herokusupport.data.migration.result.MigrationResult;
 
 @Named("statusOperation")
 public class StatusOperation implements MigrationOperation {
-	private Logger log = (Logger) LoggerFactory.getLogger(getClass());
+    private Logger log = (Logger) LoggerFactory.getLogger(getClass());
 
-	@Override
-	public MigrationResult doOperation(MigrationService migrationService) throws MigrationOperationException {
+    @Override
+    public MigrationResult doOperation(MigrationService migrationService) throws MigrationOperationException {
 
-		log.info("doOperation: start");
+        log.info("doOperation: start");
 
-		MigrationResult migrationResult = migrationService.getStatus();
+        MigrationResult migrationResult = migrationService.getStatus();
 
-		log.debug("doOperation: migrationResult = " + migrationResult);
+        log.debug("doOperation: migrationResult = " + migrationResult);
 
-		log.info("doOperation: end");
+        log.info("doOperation: end");
 
-		return migrationResult;
+        return migrationResult;
 
-	}
+    }
 
 }

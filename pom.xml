@@ -1,110 +1,110 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>com.interzonedev</groupId>
-		<artifactId>interzonedev-parent</artifactId>
-		<version>2.0.0</version>
-	</parent>
+    <parent>
+        <groupId>com.interzonedev</groupId>
+        <artifactId>interzonedev-parent</artifactId>
+        <version>2.0.0</version>
+    </parent>
 
-	<artifactId>heroku-support</artifactId>
-	<version>2.1.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+    <artifactId>heroku-support</artifactId>
+    <version>2.1.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-	<name>HerokuSupport</name>
-	<description>
+    <name>HerokuSupport</name>
+    <description>
 		Support classes for running and data migrating applications deployed on the Heroku cloud platform.
 	</description>
-	<url>https://github.com/interzonedev/herokuSupport</url>
-	<inceptionYear>2012</inceptionYear>
+    <url>https://github.com/interzonedev/herokuSupport</url>
+    <inceptionYear>2012</inceptionYear>
 
-	<properties>
-		<spring.version>3.1.2.RELEASE</spring.version>
-	</properties>
+    <properties>
+        <spring.version>3.1.2.RELEASE</spring.version>
+    </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>1.0.9</version>
-		</dependency>
+    <dependencies>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.0.9</version>
+        </dependency>
 
-		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-			<version>1</version>
-		</dependency>
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+        </dependency>
 
-		<dependency>
-			<groupId>commons-lang</groupId>
-			<artifactId>commons-lang</artifactId>
-			<version>2.6</version>
-		</dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-webapp</artifactId>
-			<version>8.1.8.v20121106</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-jsp</artifactId>
-			<version>8.1.8.v20121106</version>
-		</dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
+            <version>8.1.8.v20121106</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-jsp</artifactId>
+            <version>8.1.8.v20121106</version>
+        </dependency>
 
-		<dependency>
-			<groupId>com.googlecode.flyway</groupId>
-			<artifactId>flyway-core</artifactId>
-			<version>1.5</version>
-		</dependency>
+        <dependency>
+            <groupId>com.googlecode.flyway</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>1.5</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
 
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.13</version>
-				<configuration>
-					<excludes>
-						<exclude>**/*IntegrationTest.java</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-failsafe-plugin</artifactId>
-				<version>2.13</version>
-				<configuration>
-					<includes>
-						<include>**/*IntegrationTest.java</include>
-					</includes>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>integration-test</goal>
-							<goal>verify</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.13</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/*IntegrationTest.java</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.13</version>
+                <configuration>
+                    <includes>
+                        <include>**/*IntegrationTest.java</include>
+                    </includes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
