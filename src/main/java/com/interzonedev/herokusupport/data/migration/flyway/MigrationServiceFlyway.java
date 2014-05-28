@@ -7,8 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.googlecode.flyway.core.Flyway;
-import com.googlecode.flyway.core.init.InitException;
-import com.googlecode.flyway.core.metadatatable.MetaDataTableRow;
+import com.googlecode.flyway.core.api.FlywayException;
+import com.googlecode.flyway.core.api.MigrationInfo;
 import com.interzonedev.herokusupport.data.migration.MigrationOperationException;
 import com.interzonedev.herokusupport.data.migration.MigrationService;
 import com.interzonedev.herokusupport.data.migration.result.MigrationHistory;
@@ -28,7 +28,7 @@ public class MigrationServiceFlyway extends Flyway implements MigrationService {
         try {
             log.debug("doInit: init schema");
             init();
-        } catch (InitException ie) {
+        } catch (FlywayException ie) {
             log.info("doInit: Schema already initialized");
         } catch (Throwable t) {
             String errorMessage = "doInit: Error initializing migrations";
@@ -87,8 +87,8 @@ public class MigrationServiceFlyway extends Flyway implements MigrationService {
         MigrationResult result = null;
 
         try {
-            MetaDataTableRow status = status();
-            String statusToString = metaDataTableRowToString(status);
+            MigrationInfo status = info().current();
+            String statusToString = migrationInfoToString(status);
             result = new MigrationResult(statusToString);
         } catch (Throwable t) {
             String errorMessage = "getStatus: Error getting migration status";
@@ -106,9 +106,9 @@ public class MigrationServiceFlyway extends Flyway implements MigrationService {
         List<MigrationHistory> wrappedHistory = new ArrayList<MigrationHistory>();
 
         try {
-            List<MetaDataTableRow> history = history();
-            for (MetaDataTableRow historyItem : history) {
-                String historyToString = metaDataTableRowToString(historyItem);
+            MigrationInfo[] history = info().applied();
+            for (MigrationInfo historyItem : history) {
+                String historyToString = migrationInfoToString(historyItem);
                 wrappedHistory.add(new MigrationHistory(historyToString));
             }
         } catch (Throwable t) {
@@ -122,12 +122,12 @@ public class MigrationServiceFlyway extends Flyway implements MigrationService {
         return wrappedHistory;
     }
 
-    private String metaDataTableRowToString(MetaDataTableRow metaDataTableRow) {
+    private String migrationInfoToString(MigrationInfo migrationInfo) {
         StringBuilder out = new StringBuilder();
-        out.append(metaDataTableRow.getVersion()).append(" - ");
-        out.append(metaDataTableRow.getDescription()).append(" - ");
-        out.append(metaDataTableRow.getMigrationType()).append(" - ");
-        out.append(metaDataTableRow.getState());
+        out.append(migrationInfo.getVersion()).append(" - ");
+        out.append(migrationInfo.getDescription()).append(" - ");
+        out.append(migrationInfo.getType()).append(" - ");
+        out.append(migrationInfo.getState());
         return out.toString();
     }
 }
