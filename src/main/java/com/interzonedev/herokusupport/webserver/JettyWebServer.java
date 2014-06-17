@@ -1,14 +1,16 @@
 package com.interzonedev.herokusupport.webserver;
 
+import org.eclipse.jetty.http.MimeTypes;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class JettyWebServer implements WebServer {
-    private Logger log = (Logger) LoggerFactory.getLogger(getClass());
 
-    private WebServerParams webServerParams;
+    private static Logger log = (Logger) LoggerFactory.getLogger(JettyWebServer.class);
+
+    private final WebServerParams webServerParams;
 
     public JettyWebServer(WebServerParams webServerParams) {
         this.webServerParams = webServerParams;
@@ -35,10 +37,17 @@ public class JettyWebServer implements WebServer {
         rootContext.setResourceBase(webappDirLocation);
         rootContext.setParentLoaderPriority(true);
 
+        // Make sure static assets are returned as UTF-8.
+        MimeTypes mimeTypes = rootContext.getMimeTypes();
+        mimeTypes.addMimeMapping("html", "text/html; charset=utf-8");
+        mimeTypes.addMimeMapping("js", "application/javascript; charset=utf-8");
+        mimeTypes.addMimeMapping("css", "text/css; charset=utf-8");
+
         Server server = new Server(webPort);
         server.setHandler(rootContext);
         server.setStopAtShutdown(true);
         server.start();
         server.join();
     }
+
 }

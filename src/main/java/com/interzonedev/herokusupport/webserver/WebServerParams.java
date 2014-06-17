@@ -2,16 +2,19 @@ package com.interzonedev.herokusupport.webserver;
 
 public class WebServerParams {
 
-    private String contextPath = "/";
+    private final String contextPath;
 
-    private String webappDirLocation = "src/main/webapp";
+    private final String webappDirLocation;
 
-    private String webConfigFileLocation = "/WEB-INF/web.xml";
+    private final String webConfigFileLocation;
 
-    private int defaultWebPort = 5000;
+    private final int defaultWebPort;
 
     public WebServerParams(int defaultWebPort) {
-        this.defaultWebPort = defaultWebPort;
+        this.contextPath = "/";
+        this.webappDirLocation = "src/main/webapp";
+        this.webConfigFileLocation = "/WEB-INF/web.xml";
+        this.defaultWebPort = 5000;
     }
 
     public WebServerParams(String contextPath, String webappDirLocation, String webConfigFileLocation,

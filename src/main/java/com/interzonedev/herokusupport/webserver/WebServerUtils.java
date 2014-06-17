@@ -5,7 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class WebServerUtils {
-    private static Logger log = (Logger) LoggerFactory.getLogger(WebServerUtils.class);
+    private static final Logger log = (Logger) LoggerFactory.getLogger(WebServerUtils.class);
 
     public static int getPortFromEnv(int defaultWebPort) {
         int webPort = defaultWebPort;
