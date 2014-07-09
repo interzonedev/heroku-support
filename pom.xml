@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>heroku-support</artifactId>
-    <version>2.1.4</version>
+    <version>2.1.4-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>HerokuSupport</name>
