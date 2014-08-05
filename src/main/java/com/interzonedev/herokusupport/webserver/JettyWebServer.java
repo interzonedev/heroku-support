@@ -1,5 +1,7 @@
 package com.interzonedev.herokusupport.webserver;
 
+import java.util.function.BiConsumer;
+
 import org.eclipse.jetty.http.MimeTypes;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
@@ -12,8 +14,15 @@ public class JettyWebServer implements WebServer {
 
     private final WebServerParams webServerParams;
 
-    public JettyWebServer(WebServerParams webServerParams) {
+    private final BiConsumer<Server, WebAppContext> configure;
+
+    public JettyWebServer(WebServerParams webServerParams, BiConsumer<Server, WebAppContext> configure) {
         this.webServerParams = webServerParams;
+        this.configure = configure;
+    }
+
+    public JettyWebServer(WebServerParams webServerParams) {
+        this(webServerParams, null);
     }
 
     @Override
@@ -46,6 +55,11 @@ public class JettyWebServer implements WebServer {
         Server server = new Server(webPort);
         server.setHandler(rootContext);
         server.setStopAtShutdown(true);
+
+        if (null != configure) {
+            configure.accept(server, rootContext);
+        }
+
         server.start();
         server.join();
     }

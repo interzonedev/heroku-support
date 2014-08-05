@@ -1,5 +1,9 @@
 package com.interzonedev.herokusupport.client;
 
+import java.util.function.BiConsumer;
+
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.webapp.WebAppContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,8 +40,10 @@ public class DefaultHerokuSupportClient implements HerokuSupportClient {
         return migrationResult;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public void startWebServer(WebServerType webServerType, WebServerParams webServerParams) throws Exception {
+    public <T, U> void startWebServer(WebServerType webServerType, WebServerParams webServerParams,
+            BiConsumer<T, U> configure) throws Exception {
 
         log.info("startWebServer: Start " + webServerType);
 
@@ -45,7 +51,7 @@ public class DefaultHerokuSupportClient implements HerokuSupportClient {
 
         switch (webServerType) {
             case JETTY:
-                webServer = new JettyWebServer(webServerParams);
+                webServer = new JettyWebServer(webServerParams, (BiConsumer<Server, WebAppContext>) configure);
                 break;
             default:
                 String errorMessage = "startWebServer: Unsupported web server type: " + webServerType;
@@ -56,6 +62,7 @@ public class DefaultHerokuSupportClient implements HerokuSupportClient {
         webServer.start();
 
         log.info("startWebServer: Started webserver");
+
     }
 
 }

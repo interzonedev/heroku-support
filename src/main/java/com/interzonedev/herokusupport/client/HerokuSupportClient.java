@@ -1,5 +1,7 @@
 package com.interzonedev.herokusupport.client;
 
+import java.util.function.BiConsumer;
+
 import com.interzonedev.herokusupport.data.migration.MigrationOperationException;
 import com.interzonedev.herokusupport.data.migration.MigrationService;
 import com.interzonedev.herokusupport.data.migration.operation.MigrationTask;
@@ -11,5 +13,6 @@ public interface HerokuSupportClient {
     public MigrationResult migrateDatabase(MigrationTask migrationTask, MigrationService migrationService)
             throws MigrationOperationException;
 
-    public void startWebServer(WebServerType webServerType, WebServerParams webServerParams) throws Exception;
+    public <T, U> void startWebServer(WebServerType webServerType, WebServerParams webServerParams,
+            BiConsumer<T, U> configure) throws Exception;
 }
