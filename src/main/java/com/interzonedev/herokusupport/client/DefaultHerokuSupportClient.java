@@ -1,6 +1,7 @@
 package com.interzonedev.herokusupport.client;
 
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
@@ -14,8 +15,10 @@ import com.interzonedev.herokusupport.data.migration.operation.runner.OperationR
 import com.interzonedev.herokusupport.data.migration.result.MigrationResult;
 import com.interzonedev.herokusupport.util.SpringContextUtils;
 import com.interzonedev.herokusupport.webserver.JettyWebServer;
+import com.interzonedev.herokusupport.webserver.SecureWebServerParams;
 import com.interzonedev.herokusupport.webserver.WebServer;
 import com.interzonedev.herokusupport.webserver.WebServerParams;
+import com.interzonedev.herokusupport.webserver.WebServerProperties;
 import com.interzonedev.herokusupport.webserver.WebServerType;
 
 public class DefaultHerokuSupportClient implements HerokuSupportClient {
@@ -43,6 +46,7 @@ public class DefaultHerokuSupportClient implements HerokuSupportClient {
     @SuppressWarnings("unchecked")
     @Override
     public <T, U> void startWebServer(WebServerType webServerType, WebServerParams webServerParams,
+            SecureWebServerParams secureWebServerParams, Consumer<WebServerProperties> getWebServerProperties,
             BiConsumer<T, U> configure) throws Exception {
 
         log.info("startWebServer: Start " + webServerType);
@@ -51,7 +55,8 @@ public class DefaultHerokuSupportClient implements HerokuSupportClient {
 
         switch (webServerType) {
             case JETTY:
-                webServer = new JettyWebServer(webServerParams, (BiConsumer<Server, WebAppContext>) configure);
+                webServer = new JettyWebServer(webServerParams, secureWebServerParams, getWebServerProperties,
+                        (BiConsumer<Server, WebAppContext>) configure);
                 break;
             default:
                 String errorMessage = "startWebServer: Unsupported web server type: " + webServerType;
@@ -59,9 +64,9 @@ public class DefaultHerokuSupportClient implements HerokuSupportClient {
                 throw new IllegalArgumentException(errorMessage);
         }
 
-        webServer.start();
+        log.info("startWebServer: Starting webserver");
 
-        log.info("startWebServer: Started webserver");
+        webServer.start();
 
     }
 

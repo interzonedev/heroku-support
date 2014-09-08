@@ -1,5 +1,10 @@
 package com.interzonedev.herokusupport.webserver;
 
+/**
+ * Immuatable value object that holds the necessary parameters for starting a web server.
+ * 
+ * @author mmarkarian
+ */
 public class WebServerParams {
 
     private final String contextPath;
@@ -14,7 +19,7 @@ public class WebServerParams {
         this.contextPath = "/";
         this.webappDirLocation = "src/main/webapp";
         this.webConfigFileLocation = "/WEB-INF/web.xml";
-        this.defaultWebPort = 5000;
+        this.defaultWebPort = defaultWebPort;
     }
 
     public WebServerParams(String contextPath, String webappDirLocation, String webConfigFileLocation,
