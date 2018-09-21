@@ -27,7 +27,7 @@ public class MigrationServiceFlyway extends Flyway implements MigrationService {
 
         try {
             log.debug("doInit: init schema");
-            init();
+            baseline();
         } catch (FlywayException ie) {
             log.info("doInit: Schema already initialized");
         } catch (Throwable t) {
