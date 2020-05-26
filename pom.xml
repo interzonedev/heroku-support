@@ -13,11 +13,11 @@
     <version>3.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>HerokuSupport</name>
+    <name>heroku-support</name>
     <description>
 		Support classes for running and data migrating applications deployed on the Heroku cloud platform.
 	</description>
-    <url>https://github.com/interzonedev/herokuSupport</url>
+    <url>https://github.com/interzonedev/heroku-support</url>
     <inceptionYear>2012</inceptionYear>
 
     <properties>
