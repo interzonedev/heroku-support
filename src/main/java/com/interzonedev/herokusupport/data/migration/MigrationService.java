@@ -1,19 +1,19 @@
 package com.interzonedev.herokusupport.data.migration;
 
-import java.util.List;
-
 import com.interzonedev.herokusupport.data.migration.result.MigrationHistory;
 import com.interzonedev.herokusupport.data.migration.result.MigrationResult;
 import com.interzonedev.herokusupport.data.migration.result.MigrationStatus;
 
+import java.util.List;
+
 public interface MigrationService {
-    public MigrationStatus doInit() throws MigrationOperationException;
+    MigrationStatus doInit() throws MigrationOperationException;
 
-    public MigrationStatus doMigration() throws MigrationOperationException;
+    MigrationStatus doMigration() throws MigrationOperationException;
 
-    public void doClean() throws MigrationOperationException;
+    void doClean() throws MigrationOperationException;
 
-    public MigrationResult getStatus() throws MigrationOperationException;
+    MigrationResult getStatus() throws MigrationOperationException;
 
-    public List<MigrationHistory> getHistory() throws MigrationOperationException;
+    List<MigrationHistory> getHistory() throws MigrationOperationException;
 }

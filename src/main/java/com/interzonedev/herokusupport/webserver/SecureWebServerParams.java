@@ -2,7 +2,7 @@ package com.interzonedev.herokusupport.webserver;
 
 /**
  * Immuatable value object that holds the necessary parameters for starting a secure web server.
- * 
+ *
  * @author mmarkarian
  */
 public class SecureWebServerParams {
@@ -13,7 +13,7 @@ public class SecureWebServerParams {
     private final Integer httpsPort;
 
     public SecureWebServerParams(String keyStorePath, String keyStorePassword, String keyManagerPassword,
-            Integer httpsPort) {
+                                 Integer httpsPort) {
         this.keyStorePath = keyStorePath;
         this.keyStorePassword = keyStorePassword;
         this.keyManagerPassword = keyManagerPassword;

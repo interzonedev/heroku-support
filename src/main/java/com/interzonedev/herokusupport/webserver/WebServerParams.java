@@ -2,7 +2,7 @@ package com.interzonedev.herokusupport.webserver;
 
 /**
  * Immuatable value object that holds the necessary parameters for starting a web server.
- * 
+ *
  * @author mmarkarian
  */
 public class WebServerParams {
@@ -23,7 +23,7 @@ public class WebServerParams {
     }
 
     public WebServerParams(String contextPath, String webappDirLocation, String webConfigFileLocation,
-            int defaultWebPort) {
+                           int defaultWebPort) {
         this.contextPath = contextPath;
         this.webappDirLocation = webappDirLocation;
         this.webConfigFileLocation = webConfigFileLocation;

@@ -1,11 +1,5 @@
 package com.interzonedev.herokusupport.data.migration.operation.runner;
 
-import javax.inject.Inject;
-import javax.inject.Named;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.interzonedev.herokusupport.data.migration.MigrationOperationException;
 import com.interzonedev.herokusupport.data.migration.MigrationService;
 import com.interzonedev.herokusupport.data.migration.operation.CleanOperation;
@@ -16,11 +10,16 @@ import com.interzonedev.herokusupport.data.migration.operation.MigrationOperatio
 import com.interzonedev.herokusupport.data.migration.operation.MigrationTask;
 import com.interzonedev.herokusupport.data.migration.operation.StatusOperation;
 import com.interzonedev.herokusupport.data.migration.result.MigrationResult;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 @Named("operationRunner")
 public class DefaultOperationRunner implements OperationRunner {
 
-    private Logger log = (Logger) LoggerFactory.getLogger(getClass());
+    private static final Logger log = LoggerFactory.getLogger(DefaultOperationRunner.class);
 
     @Inject
     private InitOperation initOperation;

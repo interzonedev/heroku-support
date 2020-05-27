@@ -1,23 +1,27 @@
 package com.interzonedev.herokusupport.data.migration.flyway;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.flywaydb.core.Flyway;
-import org.flywaydb.core.api.FlywayException;
-import org.flywaydb.core.api.MigrationInfo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.interzonedev.herokusupport.data.migration.MigrationOperationException;
 import com.interzonedev.herokusupport.data.migration.MigrationService;
 import com.interzonedev.herokusupport.data.migration.result.MigrationHistory;
 import com.interzonedev.herokusupport.data.migration.result.MigrationResult;
 import com.interzonedev.herokusupport.data.migration.result.MigrationStatus;
+import org.flywaydb.core.Flyway;
+import org.flywaydb.core.api.FlywayException;
+import org.flywaydb.core.api.MigrationInfo;
+import org.flywaydb.core.api.configuration.Configuration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MigrationServiceFlyway extends Flyway implements MigrationService {
 
-    private Logger log = (Logger) LoggerFactory.getLogger(getClass());
+    private static final Logger log = LoggerFactory.getLogger(MigrationServiceFlyway.class);
+
+    public MigrationServiceFlyway(Configuration configuration) {
+        super(configuration);
+    }
 
     @Override
     public MigrationStatus doInit() throws MigrationOperationException {

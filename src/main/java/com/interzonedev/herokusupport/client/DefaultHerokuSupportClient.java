@@ -1,13 +1,5 @@
 package com.interzonedev.herokusupport.client;
 
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-
-import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.webapp.WebAppContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.interzonedev.herokusupport.data.migration.MigrationOperationException;
 import com.interzonedev.herokusupport.data.migration.MigrationService;
 import com.interzonedev.herokusupport.data.migration.operation.MigrationTask;
@@ -20,17 +12,23 @@ import com.interzonedev.herokusupport.webserver.WebServer;
 import com.interzonedev.herokusupport.webserver.WebServerParams;
 import com.interzonedev.herokusupport.webserver.WebServerProperties;
 import com.interzonedev.herokusupport.webserver.WebServerType;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.webapp.WebAppContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 public class DefaultHerokuSupportClient implements HerokuSupportClient {
 
-    private static final String[] CONTEXT_FILE_LOCATIONS = { "com/interzonedev/herokusupport/spring/applicationContext.xml" };
+    private static final String[] CONTEXT_FILE_LOCATIONS = {"com/interzonedev/herokusupport/spring/applicationContext.xml"};
 
-    private Logger log = (Logger) LoggerFactory.getLogger(getClass());
+    private static final Logger log = LoggerFactory.getLogger(DefaultHerokuSupportClient.class);
 
     @Override
     public MigrationResult migrateDatabase(MigrationTask migrationTask, MigrationService migrationService)
             throws MigrationOperationException {
-
         log.info("migrateDatabase: Start " + migrationTask);
 
         OperationRunner operationRunner = (OperationRunner) SpringContextUtils.getBean(CONTEXT_FILE_LOCATIONS,
@@ -46,12 +44,12 @@ public class DefaultHerokuSupportClient implements HerokuSupportClient {
     @SuppressWarnings("unchecked")
     @Override
     public <T, U> void startWebServer(WebServerType webServerType, WebServerParams webServerParams,
-            SecureWebServerParams secureWebServerParams, Consumer<WebServerProperties> getWebServerProperties,
-            BiConsumer<T, U> configure) throws Exception {
-
+                                      SecureWebServerParams secureWebServerParams,
+                                      Consumer<WebServerProperties> getWebServerProperties, BiConsumer<T, U> configure)
+            throws Exception {
         log.info("startWebServer: Start " + webServerType);
 
-        WebServer webServer = null;
+        WebServer webServer;
 
         switch (webServerType) {
             case JETTY:
@@ -67,7 +65,6 @@ public class DefaultHerokuSupportClient implements HerokuSupportClient {
         log.info("startWebServer: Starting webserver");
 
         webServer.start();
-
     }
 
 }

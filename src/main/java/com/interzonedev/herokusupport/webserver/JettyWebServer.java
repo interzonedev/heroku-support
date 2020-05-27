@@ -1,8 +1,5 @@
 package com.interzonedev.herokusupport.webserver;
 
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-
 import org.eclipse.jetty.http.MimeTypes;
 import org.eclipse.jetty.server.HttpConfiguration;
 import org.eclipse.jetty.server.HttpConnectionFactory;
@@ -15,9 +12,12 @@ import org.eclipse.jetty.webapp.WebAppContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+
 public class JettyWebServer implements WebServer {
 
-    private static Logger log = (Logger) LoggerFactory.getLogger(JettyWebServer.class);
+    private static final Logger log = LoggerFactory.getLogger(JettyWebServer.class);
 
     private final WebServerParams webServerParams;
 
@@ -28,7 +28,7 @@ public class JettyWebServer implements WebServer {
     private final BiConsumer<Server, WebAppContext> configure;
 
     public JettyWebServer(WebServerParams webServerParams, SecureWebServerParams secureWebServerParams,
-            Consumer<WebServerProperties> getWebServerProperties, BiConsumer<Server, WebAppContext> configure) {
+                          Consumer<WebServerProperties> getWebServerProperties, BiConsumer<Server, WebAppContext> configure) {
         this.webServerParams = webServerParams;
         this.secureWebServerParams = secureWebServerParams;
         this.getWebServerProperties = getWebServerProperties;
