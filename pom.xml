@@ -9,7 +9,7 @@
     </parent>
 
     <artifactId>heroku-support</artifactId>
-    <version>3.0.2-SNAPSHOT</version>
+    <version>3.0.2</version>
     <packaging>jar</packaging>
 
     <name>Heroku Support</name>
@@ -77,7 +77,7 @@
         <connection>scm:git:git@github.com:interzonedev/heroku-support.git</connection>
         <url>scm:git:git@github.com:interzonedev/heroku-support.git</url>
         <developerConnection>scm:git:git@github.com:interzonedev/heroku-support.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>v3.0.2</tag>
     </scm>
 
 </project>
