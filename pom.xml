@@ -5,11 +5,11 @@
     <parent>
         <groupId>com.interzonedev</groupId>
         <artifactId>interzonedev-parent</artifactId>
-        <version>2.6.2</version>
+        <version>3.0.0</version>
     </parent>
 
     <artifactId>heroku-support</artifactId>
-    <version>3.0.3-SNAPSHOT</version>
+    <version>4.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Heroku Support</name>
@@ -20,7 +20,7 @@
     <inceptionYear>2012</inceptionYear>
 
     <properties>
-        <spring.version>5.2.6.RELEASE</spring.version>
+        <spring.version>5.2.8.RELEASE</spring.version>
     </properties>
 
     <dependencies>
@@ -39,24 +39,24 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.10</version>
+            <version>3.11</version>
         </dependency>
 
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-webapp</artifactId>
-            <version>9.2.2.v20140723</version>
+            <version>9.4.31.v20200723</version>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-jsp</artifactId>
-            <version>9.2.2.v20140723</version>
+            <version>9.2.30.v20200428</version>
         </dependency>
 
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
-            <version>6.4.2</version>
+            <version>6.5.5</version>
         </dependency>
 
         <dependency>
